@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func searchItunesFor(searchTerm: String) {
         // The iTunes API wants multiple terms separated by + symbols, so replace spaces with + signs
-        var itunesSearchTerm = searchTerm.stringByReplacingOccurrencesOfString(" ", withString: "+", options: <#NSStringCompareOptions#>.CaseInsensitiveSearch, range: nil)
+        var itunesSearchTerm = searchTerm.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
         
         // Now escape anything else that isn't URL-friendly
         var escapedSearchTerm = itunesSearchTerm.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
@@ -62,6 +62,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         searchItunesFor("JQ Software")
+        
+        // Keep track of and contain the response
+        var data: NSMutableData = NSMutableData()
+        var tableData: NSArray = NSArray()
     }
 
     override func didReceiveMemoryWarning() {
